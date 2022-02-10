@@ -18,14 +18,8 @@
     <header class="page-header" role="banner">
       <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
       <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
-      <h3 class="project-tagline">{{ page.email | default: site.email | default: panbk@shanghaitech.edu.cn }}</h3>
       {% if site.github.is_project_page %}
         <a href="{{ site.github.owner_url }}" class="btn">My GitHub</a>
-        <a href="https://egate.shanghaitech.edu.cn/new/index.html" class="btn">Shanghaitech</a>
-      {% endif %}
-      {% if site.show_downloads %}
-        <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
-        <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a>
       {% endif %}
     </header>
 
