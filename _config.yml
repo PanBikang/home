@@ -1,4 +1,4 @@
 theme: jekyll-theme-cayman
-show_downloads: true
-title: Bikang666
+show_downloads: false
 description: this is a description
+github.is_project_page: false
