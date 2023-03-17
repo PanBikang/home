@@ -2263,6 +2263,10 @@ input, select, textarea {
 				background-color: #e8edec;
 			}
 
+			#main > section.five {
+				background-color: #e5e5e5;
+			}
+
 /* Wide */
 
 	@media screen and (min-width: 961px) and (max-width: 1880px) {
