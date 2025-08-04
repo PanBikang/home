@@ -2634,4 +2634,92 @@ input, select, textarea {
 					margin-top: 0;
 				}
 
+/* Timeline Styles */
+
+.timeline {
+	position: relative;
+	margin: 0 auto;
+	padding: 2em 0;
+}
+
+.timeline-item {
+	position: relative;
+	padding-left: 3em;
+	margin-bottom: 2em;
+}
+
+.timeline-content {
+	position: relative;
+	background: #f8f8f8;
+	padding: 1.5em;
+	border-radius: 0.5em;
+	border-left: 3px solid #4a9eff;
+}
+
+.timeline-date {
+	font-family: 'Courier New', monospace;
+	font-weight: 600;
+	color: #4a9eff;
+	font-size: 1.2em;
+	margin-bottom: 0.8em;
+	letter-spacing: 0.05em;
+	min-width: 4em;
+	display: inline-block;
+}
+
+.timeline-content p {
+	margin-bottom: 0.8em;
+	padding-left: 1em;
+	line-height: 1.6;
+}
+
+.date-prefix {
+	font-family: 'Courier New', monospace !important;
+	font-weight: 600 !important;
+	color: #4a9eff;
+	margin-right: 0.5em;
+}
+
+.timeline-content p:last-child {
+	margin-bottom: 0;
+}
+
+.timeline-item::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 2px;
+	background: #e0e0e0;
+}
+
+.timeline-item::after {
+	content: '';
+	position: absolute;
+	left: -4px;
+	top: 1.5em;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: #4a9eff;
+	border: 2px solid #fff;
+	box-shadow: 0 0 0 2px #e0e0e0;
+}
+
+/* Timeline responsive adjustments */
+@media screen and (max-width: 736px) {
+	.timeline-item {
+		padding-left: 2.5em;
+	}
+	
+	.timeline-content {
+		padding: 1.2em;
+	}
+	
+	.timeline-content p {
+		padding-left: 0.8em;
+	}
+}
+
 	}

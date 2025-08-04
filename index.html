@@ -121,13 +121,14 @@
         }
 
         .profile-image {
-            width: 200px;
-            height: 200px;
+            width: 250px;
+            height: 250px;
             border-radius: 50%;
             border: 4px solid rgba(255, 255, 255, 0.2);
             margin-bottom: 1rem;
             object-fit: cover;
             box-shadow: var(--shadow-lg);
+            object-position: 100% center;
         }
 
         .hero h1 {
@@ -228,6 +229,24 @@
             background: var(--gradient-accent);
         }
 
+        .arxiv-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: linear-gradient(135deg, #b31b1b 0%, #ff6b6b 100%);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .arxiv-badge::before {
+            content: "ArXiv";
+            font-weight: 700;
+            margin-right: 0.25rem;
+        }
+
         .publication-title {
             font-size: 1.25rem;
             font-weight: 600;
@@ -245,10 +264,43 @@
             color: var(--primary-color);
         }
 
+        .publication-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .publication-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--background-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .publication-link:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
+        .publication-link i {
+            font-size: 1rem;
+        }
+
         /* Timeline */
         .timeline {
             position: relative;
-            padding: 2rem 0;
+            padding: 1rem 0;
         }
 
         .timeline::before {
@@ -265,7 +317,7 @@
         .timeline-item {
             display: flex;
             align-items: center;
-            margin-bottom: 3rem;
+            margin-bottom: 1.5rem;
             position: relative;
         }
 
@@ -282,30 +334,28 @@
             background: var(--card-background);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 1.5rem;
-            margin: 0 2rem;
+            padding: 1rem;
+            margin: 0 1.5rem;
             box-shadow: var(--shadow-sm);
         }
 
         .timeline-date {
             font-weight: 600;
             color: var(--primary-color);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
+            font-size: 0.9rem;
+            text-align: center;
+            display: block;
         }
 
-        .timeline-marker {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 16px;
-            height: 16px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            border: 3px solid var(--card-background);
-            box-shadow: var(--shadow-md);
+        .date-prefix {
+            font-family: 'Courier New', monospace !important;
+            font-weight: 600 !important;
+            color: var(--primary-color);
+            margin-right: 0.5em;
         }
 
+  
         /* Contact */
         .contact {
             background: var(--card-background);
@@ -418,6 +468,27 @@
         .fade-in-up {
             animation: fadeInUp 0.8s ease-out;
         }
+
+        /* Bilingual text styling */
+        .chinese-small {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            margin-right: 0.3em;
+        }
+
+        .achievement-badge {
+            display: inline-block;
+            margin-left: 0.5em;
+            vertical-align: middle;
+        }
+
+        .achievement-badge img {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            object-fit: cover;
+        }
     </style>
 </head>
 <body>
@@ -427,10 +498,10 @@
             <div class="nav-container">
                 <a href="#home" class="logo">Pan Bikang</a>
                 <ul class="nav-links">
-                    <li><a href="#home">首页</a></li>
-                    <li><a href="#publications">论文</a></li>
-                    <li><a href="#about">关于我</a></li>
-                    <li><a href="#contact">联系</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#publications">Publications</a></li>
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -441,7 +512,7 @@
         <div class="container">
             <div class="hero-content">
                 <div class="profile-section">
-                    <img src="images/avatar.jpg" alt="Pan Bikang" class="profile-image">
+                    <img src="images/panbk.jpg" alt="Pan Bikang" class="profile-image">
                     <div class="social-links">
                         <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
@@ -465,13 +536,27 @@
     <!-- Publications Section -->
     <section id="publications" class="section publications">
         <div class="container">
-            <h2 class="section-title">论文发表</h2>
+            <h2 class="section-title">Publications</h2>
             
             <div class="publication-card">
                 <div class="conference-badge highlight">CVPR 2025 Highlight</div>
                 <div class="publication-title">NLPrompt: Noise-Label Prompt Learning for Vision-Language Models</div>
                 <div class="publication-authors">
                     <span class="highlight-author">Bikang Pan</span>, Qun Li, Xiaoying Tang, Wei Huang, Zhen Fang, Feng Liu, Jingya Wang, Jingyi Yu, Ye Shi
+                </div>
+                <div class="publication-links">
+                    <a href="https://arxiv.org/pdf/2412.01256" class="publication-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-file-pdf"></i>
+                        Paper
+                    </a>
+                    <a href="https://github.com/qunovo/NLPrompt" class="publication-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-code"></i>
+                        Code
+                    </a>
+                    <a href="https://nlprompt.github.io/" class="publication-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-home"></i>
+                        Homepage
+                    </a>
                 </div>
             </div>
 
@@ -481,6 +566,16 @@
                 <div class="publication-authors">
                     <span class="highlight-author">Bikang Pan</span>, Wei Huang, Ye Shi
                 </div>
+                <div class="publication-links">
+                    <a href="https://arxiv.org/pdf/2409.19610" class="publication-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-file-pdf"></i>
+                        Paper
+                    </a>
+                    <a href="https://github.com/PanBikang/PromptFolio" class="publication-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-code"></i>
+                        Code
+                    </a>
+                </div>
             </div>
 
             <div class="publication-card">
@@ -488,6 +583,20 @@
                 <div class="publication-title">Multi-modal Multi-platform Person Re-Identification: Benchmark and Method</div>
                 <div class="publication-authors">
                     Ruiyang Ha, Songyi Jiang, Bin Li, <span class="highlight-author">Bikang Pan</span>, Yihang Zhu, Junjie Zhang, Xiatian Zhu, Shaogang Gong, Jingya Wang
+                </div>
+                <div class="publication-links">
+                    <a href="https://arxiv.org/pdf/2503.17096" class="publication-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-file-pdf"></i>
+                        Paper
+                    </a>
+<!--                    <a href="https://github.com/MP-ReID/mp-reid" class="publication-link" target="_blank" rel="noopener noreferrer">-->
+<!--                        <i class="fas fa-code"></i>-->
+<!--                        Code-->
+<!--                    </a>-->
+                    <a href="https://mp-reid.github.io/" class="publication-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-home"></i>
+                        Homepage
+                    </a>
                 </div>
             </div>
 
@@ -497,6 +606,13 @@
                 <div class="publication-authors">
                     Pengchao Tian, Siqi Yan, <span class="highlight-author">Bikang Pan</span>, Ye Shi
                 </div>
+				<div class="publication-links">
+					<a href="https://arxiv.org/pdf/2409.19962" class="publication-link" target="_blank" rel="noopener noreferrer">
+						<i class="fas fa-file-pdf"></i>
+						Paper
+					</a>
+				</div>
+
             </div>
 
             <div class="publication-card">
@@ -506,99 +622,56 @@
                     Nanyang Ye, Lin Zhu, Jia Wang, Zhaoyu Zeng, Jiayao Shao, Chensheng Peng, <span class="highlight-author">Bikang Pan</span>, Kaican Li, Jun Zhu
                 </div>
             </div>
+
+<!--			<div class="publication-card">-->
+<!--				<div class="arxiv-badge">2023</div>-->
+<!--				<div class="publication-title">Certifiable Out-of-Distribution Generalization</div>-->
+<!--				<div class="publication-authors">-->
+<!--					Nanyang Ye, Lin Zhu, Jia Wang, Zhaoyu Zeng, Jiayao Shao, Chensheng Peng, <span class="highlight-author">Bikang Pan</span>, Kaican Li, Jun Zhu-->
+<!--				</div>-->
+<!--			</div>-->
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="section">
         <div class="container">
-            <h2 class="section-title">关于我</h2>
+            <h2 class="section-title">About Me</h2>
             
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-date">2025年2月</div>
-                        <p>担任《数值最优化》(SI152) 课程助教</p>
+                        <div class="timeline-date">2025</div>
+                        <p><span class="date-prefix">2025-02</span> Teaching Assistant for Numerical Optimization (SI152 数值最优化)</p>
+                        <p><span class="date-prefix">2025-01</span> Awarded "SIST Excellent Teaching Assistant"</p>
                     </div>
-                    <div class="timeline-marker"></div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-date">2025年1月</div>
-                        <p>荣获"SIST优秀助教"称号</p>
+                        <div class="timeline-date">2024</div>
+                        <p><span class="date-prefix">2024-09</span> Teaching Assistant for Convex Optimization (SI251 凸优化)</p>
+                        <p><span class="date-prefix">2024-02</span> Teaching Assistant for Numerical Optimization (SI152 数值最优化)</p>
                     </div>
-                    <div class="timeline-marker"></div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-date">2024年9月</div>
-                        <p>担任《凸优化》(SI251) 课程助教</p>
+                        <div class="timeline-date">2023</div>
+                        <p><span class="date-prefix">2023-06</span> Awarded "Shanghai Outstanding Graduate"</p>
+                        <p><span class="date-prefix">2023-02</span> Teaching Assistant for Numerical Optimization (SI152 数值最优化)</p>
                     </div>
-                    <div class="timeline-marker"></div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-date">2024年2月</div>
-                        <p>担任《数值最优化》(SI152) 课程助教</p>
+                        <div class="timeline-date">2022</div>
+                        <p><span class="date-prefix">2022-09</span> Teaching Assistant for Communication Principles (EE140 通信原理)</p>
+                        <p><span class="date-prefix">2022-05</span> Outstanding Winner in Mathematical Contest in Modeling (MCM)</p>
+                        <p><span class="date-prefix">2022-02</span> Teaching Assistant for Linear Algebra II (MATH1122 线性代数II)</p>
+                        <p><span class="date-prefix">2022-01</span> Perfect GPA (4.0) in Fall 2021 semester</p>
                     </div>
-                    <div class="timeline-marker"></div>
                 </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2023年6月</div>
-                        <p>荣获"上海市优秀毕业生"称号</p>
-                    </div>
-                    <div class="timeline-marker"></div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2023年2月</div>
-                        <p>担任《数值最优化》(SI152) 课程助教</p>
-                    </div>
-                    <div class="timeline-marker"></div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2022年9月</div>
-                        <p>担任《通信原理》(EE140) 课程助教</p>
-                    </div>
-                    <div class="timeline-marker"></div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2022年5月</div>
-                        <p>在2022年数学建模美赛C题中获得Outstanding Winner</p>
-                    </div>
-                    <div class="timeline-marker"></div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2022年2月</div>
-                        <p>担任《线性代数II》(MATH1122) 课程助教</p>
-                    </div>
-                    <div class="timeline-marker"></div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2022年1月</div>
-                        <p>在该学期(2021 Fall)获得满分(4.0)成绩</p>
-                    </div>
-                    <div class="timeline-marker"></div>
-                </div>
-            </div>
-
-            <div class="achievement-images">
-                <img src="images/2022MCM.png" alt="2022 MCM Award" class="achievement-image">
-                <img src="images/socre1.png" alt="Academic Score" class="achievement-image">
             </div>
         </div>
     </section>
@@ -606,7 +679,7 @@
     <!-- Contact Section -->
     <section id="contact" class="section contact">
         <div class="container">
-            <h2 class="section-title">联系我</h2>
+            <h2 class="section-title">Contact</h2>
             <div class="contact-info">
                 <i class="fas fa-envelope"></i>
                 <div class="contact-email">panbk2023 (at) shanghaitech (dot) edu (dot) cn</div>
