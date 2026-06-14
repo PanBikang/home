@@ -3,686 +3,1052 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pan Bikang - Homepage</title>
+    <title>Pan Bikang — 潘比康</title>
+    <meta name="description" content="Pan Bikang (潘比康) — Ph.D. student at ShanghaiTech University. Research in Embodied AI, world action models, and reinforcement post-training.">
+    <link rel="icon" href="images/avatar.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Sans+SC:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* ============================================================
+           Design tokens — 现代学者风
+           米白底 + 靛蓝点缀 + 暖灰文字 + 柔和渐变光晕
+           ============================================================ */
+        :root {
+            /* surfaces */
+            --bg:           #faf9f7;        /* 温暖米白主背景 */
+            --bg-soft:      #f3f1ec;        /* 次级区块背景 */
+            --surface:      #ffffff;        /* 卡片 */
+            --surface-alt:  #fbfaf8;        /* 卡片次级 */
+
+            /* brand */
+            --accent:       #4f46e5;        /* 靛蓝主色 */
+            --accent-soft:  #eef2ff;        /* 靛蓝浅底 */
+            --accent-700:   #4338ca;
+            --accent-500:   #6366f1;
+
+            /* text */
+            --ink:          #1f2330;        /* 主文字（带暖色） */
+            --ink-2:        #43485a;        /* 次级 */
+            --ink-3:        #71778a;        /* 辅助 */
+            --ink-4:        #9aa0b2;        /* 弱化 */
+
+            /* lines */
+            --line:         #e8e4dc;        /* 主分隔线（暖灰） */
+            --line-soft:    #efece6;
+
+            /* ============================================================
+               Venue 配色 —— 品牌色单色族（靛蓝梯度）
+               所有会议徽章都用靛蓝的不同深浅，按会议分量分层：
+                 · 顶级会议 (CVPR/ICML/NeurIPS/ICCV) → 最深
+                 · 主流会议 (AAAI)                    → 中等
+                 · 小众/应用会议 (SGC)                → 最浅
+               全站一个色相，深浅制造节奏，既统一又有层次。
+               ============================================================ */
+            --v-top:    #3730a3;   /* indigo-800 顶级 */
+            --v-mid:    #4f46e5;   /* indigo-600 主流 */
+            --v-soft:   #6366f1;   /* indigo-500 小众 */
+            --venue-color: var(--v-mid);  /* 默认值 */
+            --highlight:   #b45309;   /* 金黄，仅用于 Highlight 徽章 */
+
+            /* shadows — 极轻，模拟纸面 */
+            --sh-xs: 0 1px 0 rgba(31,35,48,.04);
+            --sh-sm: 0 1px 2px rgba(31,35,48,.06), 0 1px 1px rgba(31,35,48,.04);
+            --sh-md: 0 6px 18px -8px rgba(31,35,48,.12), 0 2px 6px -2px rgba(31,35,48,.06);
+            --sh-lg: 0 24px 48px -16px rgba(31,35,48,.18), 0 8px 16px -8px rgba(31,35,48,.08);
+
+            --r-sm: 8px;
+            --r-md: 14px;
+            --r-lg: 22px;
+            --r-pill: 999px;
+
+            --container: 1080px;
+
+            --font-sans: 'Inter', 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+            --font-serif: 'Newsreader', 'Noto Serif SC', Georgia, serif;
+            --font-mono: 'JetBrains Mono', ui-monospace, 'Courier New', monospace;
         }
 
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #64748b;
-            --accent-color: #0ea5e9;
-            --background-color: #f8fafc;
-            --card-background: #ffffff;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
-            --border-color: #e2e8f0;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 
         body {
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-primary);
-            line-height: 1.6;
+            font-family: var(--font-sans);
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
             overflow-x: hidden;
         }
 
+        ::selection { background: var(--accent-soft); color: var(--accent-700); }
+
+        a { color: var(--accent); text-decoration: none; transition: color .2s ease; }
+        a:hover { color: var(--accent-700); }
+
         .container {
-            max-width: 1200px;
+            max-width: var(--container);
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 28px;
         }
 
-        /* Navigation */
-        nav {
-            background: var(--card-background);
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow-sm);
+        /* ============================================================
+           Navigation — 顶部胶囊式悬浮导航
+           ============================================================ */
+        .topbar {
             position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .nav-container {
+            top: 16px; left: 0; right: 0;
+            z-index: 100;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
+            justify-content: center;
+            padding: 0 20px;
+            pointer-events: none;
         }
 
-        .logo {
-            font-size: 1.5rem;
+        .topbar-inner {
+            pointer-events: auto;
+            width: 100%;
+            max-width: var(--container);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 18px;
+            background: rgba(255,255,255,.72);
+            backdrop-filter: saturate(180%) blur(16px);
+            -webkit-backdrop-filter: saturate(180%) blur(16px);
+            border: 1px solid var(--line);
+            border-radius: var(--r-pill);
+            box-shadow: var(--sh-sm);
+            transition: box-shadow .3s ease, background .3s ease;
+        }
+
+        .topbar.scrolled .topbar-inner {
+            box-shadow: var(--sh-md);
+            background: rgba(255,255,255,.86);
+        }
+
+        .brand {
+            display: flex; align-items: center; gap: 10px;
             font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
+            font-size: .95rem;
+            color: var(--ink);
+            letter-spacing: -.01em;
+        }
+        .brand .dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-soft);
         }
 
         .nav-links {
             display: flex;
+            align-items: center;
+            gap: 4px;
             list-style: none;
-            gap: 2rem;
         }
-
         .nav-links a {
-            text-decoration: none;
-            color: var(--text-secondary);
+            color: var(--ink-2);
+            font-size: .9rem;
             font-weight: 500;
-            transition: color 0.3s ease;
+            padding: 7px 14px;
+            border-radius: var(--r-pill);
+            transition: background .2s ease, color .2s ease;
+        }
+        .nav-links a:hover { background: var(--accent-soft); color: var(--accent-700); }
+
+        .nav-toggle {
+            display: none;
+            background: none; border: none; cursor: pointer;
+            font-size: 1.1rem; color: var(--ink-2);
         }
 
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        /* Hero Section */
+        /* ============================================================
+           Hero
+           ============================================================ */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 8rem 0 4rem;
-            margin-top: 60px;
             position: relative;
+            padding: 150px 0 70px;
             overflow: hidden;
         }
 
-        .hero::before {
+        /* 柔和光晕取代紫渐变 */
+        .hero::before, .hero::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            opacity: 0.1;
-        }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .profile-section {
-            text-align: center;
-        }
-
-        .profile-image {
-            width: 250px;
-            height: 250px;
             border-radius: 50%;
-            border: 4px solid rgba(255, 255, 255, 0.2);
-            margin-bottom: 1rem;
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .hero::before {
+            width: 480px; height: 480px;
+            top: -120px; right: -80px;
+            background: radial-gradient(circle, rgba(99,102,241,.22), transparent 70%);
+        }
+        .hero::after {
+            width: 420px; height: 420px;
+            bottom: -180px; left: -120px;
+            background: radial-gradient(circle, rgba(244,114,182,.16), transparent 70%);
+        }
+
+        .hero-inner {
+            position: relative; z-index: 1;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 56px;
+            align-items: center;
+        }
+
+        .hero-portrait {
+            position: relative;
+            width: 260px; height: 260px;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: var(--sh-lg);
+            background: var(--surface);
+            border: 1px solid var(--line);
+            justify-self: center;
+        }
+        .hero-portrait img {
+            width: 100%; height: 100%;
             object-fit: cover;
-            box-shadow: var(--shadow-lg);
             object-position: 100% center;
         }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+        .hero-portrait::after {
+            content: '';
+            position: absolute; inset: 0;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,.4);
+            border-radius: inherit;
         }
 
-        .hero .chinese-name {
-            font-size: 1.5rem;
+        .hero-text .eyebrow {
+            display: inline-flex;
+            align-items: center; gap: 8px;
+            font-family: var(--font-mono);
+            font-size: .78rem;
             font-weight: 500;
-            opacity: 0.9;
-            margin-bottom: 1rem;
+            color: var(--accent-700);
+            background: var(--accent-soft);
+            padding: 6px 14px;
+            border-radius: var(--r-pill);
+            margin-bottom: 22px;
+            letter-spacing: .02em;
+        }
+        .hero-text .eyebrow .pulse {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 0 rgba(79,70,229,.5);
+            animation: pulse 2.2s infinite;
+        }
+        @keyframes pulse {
+            0%   { box-shadow: 0 0 0 0 rgba(79,70,229,.45); }
+            70%  { box-shadow: 0 0 0 8px rgba(79,70,229,0); }
+            100% { box-shadow: 0 0 0 0 rgba(79,70,229,0); }
         }
 
-        .hero .subtitle {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            opacity: 0.9;
+        .hero-text h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(2.6rem, 5vw, 3.6rem);
+            font-weight: 600;
+            line-height: 1.05;
+            letter-spacing: -.02em;
+            color: var(--ink);
+            margin-bottom: 6px;
         }
-
-        .hero .description {
+        .hero-text .zh-name {
+            font-size: 1.15rem;
+            color: var(--ink-3);
+            font-weight: 400;
+            margin-bottom: 18px;
+            letter-spacing: .08em;
+        }
+        .hero-text .role {
             font-size: 1.1rem;
-            opacity: 0.8;
-            max-width: 600px;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        /* Section Styles */
-        .section {
-            padding: 4rem 0;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--text-primary);
-        }
-
-        /* Publications */
-        .publications {
-            background: var(--card-background);
-        }
-
-        .publication-card {
-            background: var(--card-background);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .publication-card:hover {
-            box-shadow: var(--shadow-md);
-            transform: translateY(-2px);
-        }
-
-        .conference-badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: var(--gradient-primary);
-            color: white;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .conference-badge.highlight {
-            background: var(--gradient-accent);
-        }
-
-        .arxiv-badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: linear-gradient(135deg, #b31b1b 0%, #ff6b6b 100%);
-            color: white;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .arxiv-badge::before {
-            content: "ArXiv";
-            font-weight: 700;
-            margin-right: 0.25rem;
-        }
-
-        .publication-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .publication-authors {
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-        }
-
-        .publication-authors .highlight-author {
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .publication-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .publication-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: var(--background-color);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-size: 0.875rem;
+            color: var(--ink-2);
             font-weight: 500;
-            transition: all 0.3s ease;
+            margin-bottom: 18px;
+        }
+        .hero-text .role .at {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .hero-text .desc {
+            font-size: 1.02rem;
+            color: var(--ink-2);
+            max-width: 560px;
+            margin-bottom: 28px;
+        }
+        .hero-text .desc .kw {
+            color: var(--ink);
+            font-weight: 600;
+            background: linear-gradient(transparent 62%, rgba(99,102,241,.18) 62%);
+            padding: 0 2px;
         }
 
-        .publication-link:hover {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
+        .hero-interests {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            margin-bottom: 30px;
+        }
+        .chip {
+            font-size: .82rem;
+            font-weight: 500;
+            color: var(--ink-2);
+            background: var(--surface);
+            border: 1px solid var(--line);
+            padding: 6px 13px;
+            border-radius: var(--r-pill);
+            transition: all .2s ease;
+        }
+        .chip:hover {
+            border-color: var(--accent-500);
+            color: var(--accent-700);
             transform: translateY(-1px);
         }
 
-        .publication-link i {
-            font-size: 1rem;
+        .hero-actions {
+            display: flex; flex-wrap: wrap; gap: 10px;
+            align-items: center;
+        }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 11px 20px;
+            border-radius: var(--r-pill);
+            font-size: .9rem;
+            font-weight: 600;
+            transition: all .2s ease;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 6px 16px -6px rgba(79,70,229,.55);
+        }
+        .btn-primary:hover {
+            background: var(--accent-700);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px -6px rgba(79,70,229,.6);
+        }
+        .btn-ghost {
+            background: var(--surface);
+            color: var(--ink-2);
+            border-color: var(--line);
+        }
+        .btn-ghost:hover {
+            border-color: var(--accent-500);
+            color: var(--accent-700);
+            transform: translateY(-2px);
+        }
+        .icon-links {
+            display: flex; gap: 6px;
+            margin-left: 6px;
+        }
+        .icon-link {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            color: var(--ink-2);
+            transition: all .2s ease;
+        }
+        .icon-link:hover {
+            color: var(--accent-700);
+            border-color: var(--accent-500);
+            transform: translateY(-2px);
         }
 
-        /* Timeline */
+        /* ============================================================
+           Section frame
+           ============================================================ */
+        section.block { padding: 76px 0; }
+
+        .section-head {
+            display: flex;
+            align-items: baseline;
+            gap: 18px;
+            margin-bottom: 44px;
+        }
+        .section-head .num {
+            font-family: var(--font-mono);
+            font-size: .82rem;
+            font-weight: 500;
+            color: var(--accent);
+            letter-spacing: .08em;
+        }
+        .section-head h2 {
+            font-family: var(--font-serif);
+            font-size: clamp(1.8rem, 3.2vw, 2.3rem);
+            font-weight: 600;
+            letter-spacing: -.015em;
+            color: var(--ink);
+        }
+        .section-head .rule {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--line), transparent);
+        }
+
+        /* ============================================================
+           Publications
+           ============================================================ */
+        .pubs { display: grid; gap: 16px; }
+
+        .pub {
+            position: relative;
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: 26px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--r-md);
+            padding: 24px 26px;
+            transition: all .25s ease;
+            box-shadow: var(--sh-xs);
+        }
+        .pub::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 18px; bottom: 18px;
+            width: 3px;
+            background: var(--venue-color);
+            border-radius: 0 3px 3px 0;
+            opacity: 0;
+            transition: opacity .25s ease;
+        }
+        .pub:hover {
+            border-color: color-mix(in srgb, var(--venue-color) 40%, var(--line));
+            box-shadow: var(--sh-md);
+            transform: translateY(-2px);
+        }
+        .pub:hover::before { opacity: 1; }
+
+        .pub-meta { display: flex; flex-direction: column; gap: 6px; }
+        .venue {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            align-self: flex-start;
+            font-family: var(--font-mono);
+            font-size: .76rem;
+            font-weight: 600;
+            color: var(--venue-color);
+            background: color-mix(in srgb, var(--venue-color) 10%, transparent);
+            padding: 4px 10px;
+            border-radius: var(--r-pill);
+            letter-spacing: .02em;
+        }
+        .pub-year {
+            font-family: var(--font-mono);
+            font-size: .82rem;
+            color: var(--ink-3);
+            font-weight: 500;
+        }
+        .flag-highlight {
+            font-size: .68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: var(--highlight);
+            background: #fef3c7;
+            padding: 3px 8px;
+            border-radius: var(--r-pill);
+            align-self: flex-start;
+        }
+
+        .pub-body { min-width: 0; }
+        .pub-title {
+            font-family: var(--font-serif);
+            font-size: 1.22rem;
+            font-weight: 600;
+            color: var(--ink);
+            line-height: 1.35;
+            margin-bottom: 8px;
+            letter-spacing: -.01em;
+        }
+        .pub-authors {
+            font-size: .92rem;
+            color: var(--ink-2);
+            margin-bottom: 14px;
+        }
+        .pub-authors .me {
+            font-weight: 700;
+            color: var(--accent-700);
+            background: var(--accent-soft);
+            padding: 1px 6px;
+            border-radius: 4px;
+        }
+        .pub-links {
+            display: flex; flex-wrap: wrap; gap: 8px;
+        }
+        .plink {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: .82rem;
+            font-weight: 500;
+            color: var(--ink-2);
+            background: var(--surface-alt);
+            border: 1px solid var(--line);
+            padding: 6px 12px;
+            border-radius: var(--r-sm);
+            transition: all .2s ease;
+        }
+        .plink:hover {
+            color: var(--accent-700);
+            border-color: var(--accent-500);
+            background: var(--accent-soft);
+            transform: translateY(-1px);
+        }
+        .plink i { font-size: .82rem; color: var(--ink-3); }
+        .plink:hover i { color: var(--accent); }
+
+        /* ============================================================
+           Timeline — About Me
+           左竖线 + 节点 + 卡片，清晰可读
+           ============================================================ */
         .timeline {
             position: relative;
-            padding: 1rem 0;
+            padding-left: 8px;
         }
-
         .timeline::before {
             content: '';
             position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
+            left: 11px; top: 8px; bottom: 8px;
             width: 2px;
-            background: var(--border-color);
-            transform: translateX(-50%);
+            background: linear-gradient(to bottom, var(--accent-500), var(--line));
         }
 
-        .timeline-item {
+        .tl-item {
+            position: relative;
+            padding-left: 44px;
+            padding-bottom: 26px;
+        }
+        .tl-item:last-child { padding-bottom: 0; }
+
+        .tl-dot {
+            position: absolute;
+            left: 4px; top: 6px;
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 3px solid var(--accent-500);
+            box-shadow: 0 0 0 4px var(--bg-soft);
+            z-index: 1;
+        }
+
+        .tl-year {
+            display: inline-flex;
+            align-items: center; gap: 8px;
+            font-family: var(--font-mono);
+            font-size: .85rem;
+            font-weight: 600;
+            color: var(--accent-700);
+            margin-bottom: 10px;
+        }
+        .tl-year::after {
+            content: '';
+            display: inline-block;
+            width: 24px; height: 1px;
+            background: var(--accent-500);
+            opacity: .5;
+        }
+
+        .tl-card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--r-md);
+            padding: 16px 20px;
+            box-shadow: var(--sh-xs);
+            transition: all .2s ease;
+        }
+        .tl-card:hover {
+            box-shadow: var(--sh-sm);
+            border-color: var(--accent-500);
+        }
+        .tl-entry {
             display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 8px 0;
+            font-size: .95rem;
+            color: var(--ink-2);
+            line-height: 1.55;
+        }
+        .tl-entry + .tl-entry {
+            border-top: 1px dashed var(--line-soft);
+        }
+        .tl-month {
+            font-family: var(--font-mono);
+            font-size: .76rem;
+            font-weight: 600;
+            color: var(--ink-3);
+            background: var(--bg-soft);
+            padding: 3px 8px;
+            border-radius: var(--r-sm);
+            flex-shrink: 0;
+            white-space: nowrap;
+            margin-top: 1px;
+        }
+        .tl-entry strong { color: var(--ink); font-weight: 600; }
+        .tl-entry .award {
+            color: var(--highlight);
+            font-weight: 600;
+        }
+
+        /* ============================================================
+           Contact
+           ============================================================ */
+        .contact-card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--r-lg);
+            padding: 44px 40px;
+            text-align: center;
+            box-shadow: var(--sh-sm);
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: -100px; left: 50%;
+            transform: translateX(-50%);
+            width: 360px; height: 240px;
+            background: radial-gradient(ellipse, rgba(99,102,241,.14), transparent 70%);
+            filter: blur(40px);
+            pointer-events: none;
+        }
+        .contact-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 10px;
             position: relative;
         }
-
-        .timeline-item:nth-child(odd) {
-            flex-direction: row;
+        .contact-card p {
+            color: var(--ink-3);
+            font-size: .98rem;
+            margin-bottom: 26px;
+            position: relative;
         }
-
-        .timeline-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .timeline-content {
-            flex: 1;
-            background: var(--card-background);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1rem;
-            margin: 0 1.5rem;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .timeline-date {
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 0.25rem;
-            font-size: 0.9rem;
-            text-align: center;
-            display: block;
-        }
-
-        .date-prefix {
-            font-family: 'Courier New', monospace !important;
-            font-weight: 600 !important;
-            color: var(--primary-color);
-            margin-right: 0.5em;
-        }
-
-  
-        /* Contact */
-        .contact {
-            background: var(--card-background);
-            text-align: center;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .contact-info i {
-            color: var(--primary-color);
-            font-size: 1.5rem;
-        }
-
         .contact-email {
-            font-size: 1.25rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-mono);
+            font-size: 1.08rem;
             font-weight: 500;
-            color: var(--primary-color);
+            color: var(--accent-700);
+            background: var(--accent-soft);
+            padding: 14px 26px;
+            border-radius: var(--r-pill);
+            border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+            transition: all .2s ease;
+            position: relative;
         }
-
-        /* Achievement Images */
-        .achievement-images {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+        .contact-email:hover {
+            color: var(--accent-700);
+            background: #e0e7ff;
+            transform: translateY(-2px);
+            box-shadow: var(--sh-md);
         }
+        .contact-email i { font-size: 1.1rem; }
 
-        .achievement-image {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: var(--shadow-md);
-            transition: transform 0.3s ease;
-        }
-
-        .achievement-image:hover {
-            transform: scale(1.05);
-        }
-
-        /* Footer */
+        /* ============================================================
+           Footer
+           ============================================================ */
         footer {
-            background: var(--text-primary);
-            color: white;
+            border-top: 1px solid var(--line);
+            padding: 34px 0;
             text-align: center;
-            padding: 2rem 0;
+            color: var(--ink-4);
+            font-size: .85rem;
+        }
+        footer .heart { color: var(--highlight); }
+
+        /* ============================================================
+           Scroll reveal
+           ============================================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+        }
+        .reveal.in {
+            opacity: 1;
+            transform: none;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero-content {
+        /* ============================================================
+           Responsive
+           ============================================================ */
+        @media (max-width: 880px) {
+            .hero-inner {
                 grid-template-columns: 1fr;
+                gap: 36px;
                 text-align: center;
             }
+            .hero-portrait { justify-self: center; width: 220px; height: 220px; }
+            .hero-text .eyebrow,
+            .hero-interests,
+            .hero-actions { justify-content: center; }
+            .hero-text .desc { margin-left: auto; margin-right: auto; }
+        }
 
-            .hero h1 {
-                font-size: 2rem;
+        @media (max-width: 720px) {
+            .container { padding: 0 20px; }
+            .hero { padding: 120px 0 50px; }
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                position: absolute;
+                top: calc(100% + 10px); left: 0; right: 0;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 4px;
+                padding: 12px;
+                background: rgba(255,255,255,.96);
+                backdrop-filter: blur(16px);
+                border: 1px solid var(--line);
+                border-radius: var(--r-md);
+                box-shadow: var(--sh-md);
             }
+            .nav-links.open a { padding: 12px 16px; }
+            .nav-toggle { display: inline-flex; }
 
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item {
-                flex-direction: column !important;
-                align-items: flex-start;
-                margin-left: 2rem;
-            }
-
-            .timeline-content {
-                margin: 0 0 0 2rem;
-            }
-
-            .timeline-marker {
-                left: 20px;
-            }
-
-            .achievement-images {
+            .pub {
                 grid-template-columns: 1fr;
+                gap: 12px;
+                padding: 20px;
+            }
+            .pub-meta { flex-direction: row; align-items: center; gap: 12px; }
+
+            .section-head { gap: 12px; }
+            .contact-card { padding: 32px 22px; }
+
+            .tl-entry {
+                flex-direction: column;
+                gap: 6px;
             }
         }
 
-        /* Smooth Scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Animation */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: .001ms !important;
+                transition-duration: .001ms !important;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        /* Bilingual text styling */
-        .chinese-small {
-            font-size: 0.85em;
-            color: var(--text-secondary);
-            margin-right: 0.3em;
-        }
-
-        .achievement-badge {
-            display: inline-block;
-            margin-left: 0.5em;
-            vertical-align: middle;
-        }
-
-        .achievement-badge img {
-            width: 24px;
-            height: 24px;
-            border-radius: 4px;
-            border: 1px solid var(--border-color);
-            object-fit: cover;
+            .reveal { opacity: 1; transform: none; }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <div class="nav-container">
-                <a href="#home" class="logo">Pan Bikang</a>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#publications">Publications</a></li>
-                    <li><a href="#about">About Me</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
+    <div class="topbar" id="topbar">
+        <div class="topbar-inner">
+            <a href="#home" class="brand">
+                <span class="dot"></span>
+                Pan Bikang
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-    </nav>
+    </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
+    <!-- Hero -->
+    <header class="hero" id="home">
         <div class="container">
-            <div class="hero-content">
-                <div class="profile-section">
-                    <img src="images/panbk.jpg" alt="Pan Bikang" class="profile-image">
-                    <div class="social-links">
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="#" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
-                        <a href="mailto:panbk2023@shanghaitech.edu.cn" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                    </div>
+            <div class="hero-inner">
+                <div class="hero-portrait">
+                    <img src="images/panbk.jpg" alt="Pan Bikang">
                 </div>
                 <div class="hero-text">
-                    <h1 class="fade-in-up">Pan Bikang</h1>
-                    <div class="chinese-name fade-in-up">潘比康</div>
-                    <div class="subtitle fade-in-up">PhD Student @ ShanghaiTech University</div>
-                    <div class="description fade-in-up">
-                        I am a computer science Ph.D. student currently studying in ShanghaiTech supervised by professor Ye Shi (石野). I'm interested in optimization and machine learning.
+                    <span class="eyebrow"><span class="pulse"></span>Ph.D. Candidate · ShanghaiTech</span>
+                    <h1>Pan Bikang</h1>
+                    <div class="zh-name">潘比康</div>
+                    <div class="role">
+                        <span class="at">Embodied AI</span> &middot; World Models &middot; RL Post-Training
+                    </div>
+                    <p class="desc">
+                        I am a computer science Ph.D. student at ShanghaiTech University, supervised by
+                        Prof. Ye Shi (石野). My research centers on <span class="kw">Embodied AI</span> —
+                        particularly <span class="kw">world action models</span> and
+                        <span class="kw">reinforcement post-training</span> for building agents that
+                        perceive, plan, and act in complex environments.
+                    </p>
+                    <div class="hero-interests">
+                        <span class="chip">Embodied AI</span>
+                        <span class="chip">World Action Models</span>
+                        <span class="chip">Reinforcement Post-Training</span>
+                        <span class="chip">Policy Learning</span>
+                    </div>
+                    <div class="hero-actions">
+                        <a href="#publications" class="btn btn-primary">
+                            <i class="fas fa-book-open"></i> View Publications
+                        </a>
+                        <a href="https://scholar.google.com" target="_blank" rel="noopener" class="btn btn-ghost">
+                            <i class="fas fa-graduation-cap"></i> Google Scholar
+                        </a>
+                        <span class="icon-links">
+                            <a class="icon-link" href="https://github.com/PanBikang" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a class="icon-link" href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a class="icon-link" href="mailto:panbk2023@shanghaitech.edu.cn" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- Publications Section -->
-    <section id="publications" class="section publications">
+    <!-- Publications -->
+    <section class="block" id="publications">
         <div class="container">
-            <h2 class="section-title">Publications</h2>
-            
-            <div class="publication-card">
-                <div class="conference-badge highlight">CVPR 2025 Highlight</div>
-                <div class="publication-title">NLPrompt: Noise-Label Prompt Learning for Vision-Language Models</div>
-                <div class="publication-authors">
-                    <span class="highlight-author">Bikang Pan</span>, Qun Li, Xiaoying Tang, Wei Huang, Zhen Fang, Feng Liu, Jingya Wang, Jingyi Yu, Ye Shi
-                </div>
-                <div class="publication-links">
-                    <a href="https://arxiv.org/pdf/2412.01256" class="publication-link" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-file-pdf"></i>
-                        Paper
-                    </a>
-                    <a href="https://github.com/qunovo/NLPrompt" class="publication-link" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-code"></i>
-                        Code
-                    </a>
-                    <a href="https://nlprompt.github.io/" class="publication-link" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-home"></i>
-                        Homepage
-                    </a>
-                </div>
+            <div class="section-head reveal">
+                <span class="num">01 /</span>
+                <h2>Selected Publications</h2>
+                <span class="rule"></span>
             </div>
 
-            <div class="publication-card">
-                <div class="conference-badge">NeurIPS 2024</div>
-                <div class="publication-title">Federated Learning from Vision-Language Foundation Models: Theoretical Analysis and Method</div>
-                <div class="publication-authors">
-                    <span class="highlight-author">Bikang Pan</span>, Wei Huang, Ye Shi
-                </div>
-                <div class="publication-links">
-                    <a href="https://arxiv.org/pdf/2409.19610" class="publication-link" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-file-pdf"></i>
-                        Paper
-                    </a>
-                    <a href="https://github.com/PanBikang/PromptFolio" class="publication-link" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-code"></i>
-                        Code
-                    </a>
-                </div>
+            <div class="pubs">
+                <!-- ICML 2026 · 顶级会议 -->
+                <article class="pub reveal" style="--venue-color: var(--v-top);">
+                    <div class="pub-meta">
+                        <span class="venue"><i class="fas fa-microchip"></i> ICML 2026</span>
+                        <span class="pub-year">2026</span>
+                    </div>
+                    <div class="pub-body">
+                        <h3 class="pub-title">Sample-Efficient Diffusion-based Reinforcement Learning with Critic Guidance</h3>
+                        <div class="pub-authors">
+                            Shutong Ding, Zejia Zhong, Zhongyi Wang, Ke Hu, <span class="me">Bikang Pan</span>, Jingya Wang, Ye Shi
+                        </div>
+                        <div class="pub-links">
+                            <a href="https://arxiv.org/abs/2605.30056" target="_blank" rel="noopener" class="plink"><i class="fas fa-file-pdf"></i> Paper</a>
+                            <a href="https://github.com/wadx2019/cgpo" target="_blank" rel="noopener" class="plink"><i class="fas fa-code"></i> Code</a>
+                            <a href="https://dingsht.tech/cgpo-webpage/" target="_blank" rel="noopener" class="plink"><i class="fas fa-globe"></i> Project</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CVPR 2025 Highlight · 顶级会议 -->
+                <article class="pub reveal" style="--venue-color: var(--v-top);">
+                    <div class="pub-meta">
+                        <span class="venue"><i class="fas fa-fire"></i> CVPR 2025</span>
+                        <span class="flag-highlight">Highlight</span>
+                        <span class="pub-year">2025</span>
+                    </div>
+                    <div class="pub-body">
+                        <h3 class="pub-title">NLPrompt: Noise-Label Prompt Learning for Vision-Language Models</h3>
+                        <div class="pub-authors">
+                            <span class="me">Bikang Pan</span>, Qun Li, Xiaoying Tang, Wei Huang, Zhen Fang, Feng Liu, Jingya Wang, Jingyi Yu, Ye Shi
+                        </div>
+                        <div class="pub-links">
+                            <a href="https://arxiv.org/pdf/2412.01256" target="_blank" rel="noopener" class="plink"><i class="fas fa-file-pdf"></i> Paper</a>
+                            <a href="https://github.com/qunovo/NLPrompt" target="_blank" rel="noopener" class="plink"><i class="fas fa-code"></i> Code</a>
+                            <a href="https://nlprompt.github.io/" target="_blank" rel="noopener" class="plink"><i class="fas fa-globe"></i> Project</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- ICCV 2025 · 顶级会议 -->
+                <article class="pub reveal" style="--venue-color: var(--v-top);">
+                    <div class="pub-meta">
+                        <span class="venue"><i class="fas fa-camera"></i> ICCV 2025</span>
+                        <span class="pub-year">2025</span>
+                    </div>
+                    <div class="pub-body">
+                        <h3 class="pub-title">Multi-modal Multi-platform Person Re-Identification: Benchmark and Method</h3>
+                        <div class="pub-authors">
+                            Ruiyang Ha, Songyi Jiang, Bin Li, <span class="me">Bikang Pan</span>, Yihang Zhu, Junjie Zhang, Xiatian Zhu, Shaogang Gong, Jingya Wang
+                        </div>
+                        <div class="pub-links">
+                            <a href="https://arxiv.org/pdf/2503.17096" target="_blank" rel="noopener" class="plink"><i class="fas fa-file-pdf"></i> Paper</a>
+                            <a href="https://mp-reid.github.io/" target="_blank" rel="noopener" class="plink"><i class="fas fa-globe"></i> Project</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- NeurIPS 2024 · 顶级会议 -->
+                <article class="pub reveal" style="--venue-color: var(--v-top);">
+                    <div class="pub-meta">
+                        <span class="venue"><i class="fas fa-star"></i> NeurIPS 2024</span>
+                        <span class="pub-year">2024</span>
+                    </div>
+                    <div class="pub-body">
+                        <h3 class="pub-title">Federated Learning from Vision-Language Foundation Models: Theoretical Analysis and Method</h3>
+                        <div class="pub-authors">
+                            <span class="me">Bikang Pan</span>, Wei Huang, Ye Shi
+                        </div>
+                        <div class="pub-links">
+                            <a href="https://arxiv.org/pdf/2409.19610" target="_blank" rel="noopener" class="plink"><i class="fas fa-file-pdf"></i> Paper</a>
+                            <a href="https://github.com/PanBikang/PromptFolio" target="_blank" rel="noopener" class="plink"><i class="fas fa-code"></i> Code</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- SGC 2024 · 小众/应用会议 -->
+                <article class="pub reveal" style="--venue-color: var(--v-soft);">
+                    <div class="pub-meta">
+                        <span class="venue"><i class="fas fa-bolt"></i> SGC 2024</span>
+                        <span class="pub-year">2024</span>
+                    </div>
+                    <div class="pub-body">
+                        <h3 class="pub-title">Two-Stage Optimization for Efficient V2G Coordination in Distribution Power System</h3>
+                        <div class="pub-authors">
+                            Pengchao Tian, Siqi Yan, <span class="me">Bikang Pan</span>, Ye Shi
+                        </div>
+                        <div class="pub-links">
+                            <a href="https://arxiv.org/pdf/2409.19962" target="_blank" rel="noopener" class="plink"><i class="fas fa-file-pdf"></i> Paper</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- AAAI 2023 · 主流会议 -->
+                <article class="pub reveal" style="--venue-color: var(--v-mid);">
+                    <div class="pub-meta">
+                        <span class="venue"><i class="fas fa-award"></i> AAAI 2023</span>
+                        <span class="pub-year">2023</span>
+                    </div>
+                    <div class="pub-body">
+                        <h3 class="pub-title">Certifiable Out-of-Distribution Generalization</h3>
+                        <div class="pub-authors">
+                            Nanyang Ye, Lin Zhu, Jia Wang, Zhaoyu Zeng, Jiayao Shao, Chensheng Peng, <span class="me">Bikang Pan</span>, Kaican Li, Jun Zhu
+                        </div>
+                    </div>
+                </article>
             </div>
-
-            <div class="publication-card">
-                <div class="conference-badge">ICCV 2025</div>
-                <div class="publication-title">Multi-modal Multi-platform Person Re-Identification: Benchmark and Method</div>
-                <div class="publication-authors">
-                    Ruiyang Ha, Songyi Jiang, Bin Li, <span class="highlight-author">Bikang Pan</span>, Yihang Zhu, Junjie Zhang, Xiatian Zhu, Shaogang Gong, Jingya Wang
-                </div>
-                <div class="publication-links">
-                    <a href="https://arxiv.org/pdf/2503.17096" class="publication-link" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-file-pdf"></i>
-                        Paper
-                    </a>
-<!--                    <a href="https://github.com/MP-ReID/mp-reid" class="publication-link" target="_blank" rel="noopener noreferrer">-->
-<!--                        <i class="fas fa-code"></i>-->
-<!--                        Code-->
-<!--                    </a>-->
-                    <a href="https://mp-reid.github.io/" class="publication-link" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-home"></i>
-                        Homepage
-                    </a>
-                </div>
-            </div>
-
-            <div class="publication-card">
-                <div class="conference-badge">SGC 2024</div>
-                <div class="publication-title">Two-Stage Optimization for Efficient V2G Coordination in Distribution Power System</div>
-                <div class="publication-authors">
-                    Pengchao Tian, Siqi Yan, <span class="highlight-author">Bikang Pan</span>, Ye Shi
-                </div>
-				<div class="publication-links">
-					<a href="https://arxiv.org/pdf/2409.19962" class="publication-link" target="_blank" rel="noopener noreferrer">
-						<i class="fas fa-file-pdf"></i>
-						Paper
-					</a>
-				</div>
-
-            </div>
-
-            <div class="publication-card">
-                <div class="conference-badge">AAAI 2023</div>
-                <div class="publication-title">Certifiable Out-of-Distribution Generalization</div>
-                <div class="publication-authors">
-                    Nanyang Ye, Lin Zhu, Jia Wang, Zhaoyu Zeng, Jiayao Shao, Chensheng Peng, <span class="highlight-author">Bikang Pan</span>, Kaican Li, Jun Zhu
-                </div>
-            </div>
-
-<!--			<div class="publication-card">-->
-<!--				<div class="arxiv-badge">2023</div>-->
-<!--				<div class="publication-title">Certifiable Out-of-Distribution Generalization</div>-->
-<!--				<div class="publication-authors">-->
-<!--					Nanyang Ye, Lin Zhu, Jia Wang, Zhaoyu Zeng, Jiayao Shao, Chensheng Peng, <span class="highlight-author">Bikang Pan</span>, Kaican Li, Jun Zhu-->
-<!--				</div>-->
-<!--			</div>-->
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="section">
+    <!-- About / Timeline -->
+    <section class="block" id="about" style="background: var(--bg-soft);">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
-            
+            <div class="section-head reveal">
+                <span class="num">02 /</span>
+                <h2>About Me</h2>
+                <span class="rule"></span>
+            </div>
+
             <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2025</div>
-                        <p><span class="date-prefix">2025-02</span> Teaching Assistant for Numerical Optimization (SI152 数值最优化)</p>
-                        <p><span class="date-prefix">2025-01</span> Awarded "SIST Excellent Teaching Assistant"</p>
+                <div class="tl-item reveal">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">2026</div>
+                    <div class="tl-card">
+                        <div class="tl-entry">
+                            <span class="tl-month">06</span>
+                            <span><span class="award">Awarded</span> <strong>"Outstanding Student Leader"</strong> (优秀学生干部)</span>
+                        </div>
+                        <div class="tl-entry">
+                            <span class="tl-month">02</span>
+                            <span>Teaching Assistant for <strong>Numerical Optimization</strong> (SI152 数值最优化)</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2024</div>
-                        <p><span class="date-prefix">2024-09</span> Teaching Assistant for Convex Optimization (SI251 凸优化)</p>
-                        <p><span class="date-prefix">2024-02</span> Teaching Assistant for Numerical Optimization (SI152 数值最优化)</p>
+                <div class="tl-item reveal">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">2025</div>
+                    <div class="tl-card">
+                        <div class="tl-entry">
+                            <span class="tl-month">09</span>
+                            <span>Teaching Assistant for <strong>Convex Optimization</strong> (SI251 凸优化)</span>
+                        </div>
+                        <div class="tl-entry">
+                            <span class="tl-month">06</span>
+                            <span><span class="award">Awarded</span> <strong>"Outstanding Student"</strong> (优秀学生)</span>
+                        </div>
+                        <div class="tl-entry">
+                            <span class="tl-month">02</span>
+                            <span>Teaching Assistant for <strong>Numerical Optimization</strong> (SI152 数值最优化)</span>
+                        </div>
+                        <div class="tl-entry">
+                            <span class="tl-month">01</span>
+                            <span><span class="award">Awarded</span> <strong>"SIST Excellent Teaching Assistant"</strong></span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2023</div>
-                        <p><span class="date-prefix">2023-06</span> Awarded "Shanghai Outstanding Graduate"</p>
-                        <p><span class="date-prefix">2023-02</span> Teaching Assistant for Numerical Optimization (SI152 数值最优化)</p>
+                <div class="tl-item reveal">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">2024</div>
+                    <div class="tl-card">
+                        <div class="tl-entry">
+                            <span class="tl-month">09</span>
+                            <span>Teaching Assistant for <strong>Convex Optimization</strong> (SI251 凸优化)</span>
+                        </div>
+                        <div class="tl-entry">
+                            <span class="tl-month">02</span>
+                            <span>Teaching Assistant for <strong>Numerical Optimization</strong> (SI152 数值最优化)</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2022</div>
-                        <p><span class="date-prefix">2022-09</span> Teaching Assistant for Communication Principles (EE140 通信原理)</p>
-                        <p><span class="date-prefix">2022-05</span> Outstanding Winner in Mathematical Contest in Modeling (MCM)</p>
-                        <p><span class="date-prefix">2022-02</span> Teaching Assistant for Linear Algebra II (MATH1122 线性代数II)</p>
-                        <p><span class="date-prefix">2022-01</span> Perfect GPA (4.0) in Fall 2021 semester</p>
+                <div class="tl-item reveal">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">2023</div>
+                    <div class="tl-card">
+                        <div class="tl-entry">
+                            <span class="tl-month">06</span>
+                            <span><span class="award">Awarded</span> <strong>"Shanghai Outstanding Graduate"</strong></span>
+                        </div>
+                        <div class="tl-entry">
+                            <span class="tl-month">02</span>
+                            <span>Teaching Assistant for <strong>Numerical Optimization</strong> (SI152 数值最优化)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tl-item reveal">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">2022</div>
+                    <div class="tl-card">
+                        <div class="tl-entry">
+                            <span class="tl-month">09</span>
+                            <span>Teaching Assistant for <strong>Communication Principles</strong> (EE140 通信原理)</span>
+                        </div>
+                        <div class="tl-entry">
+                            <span class="tl-month">05</span>
+                            <span><span class="award">Outstanding Winner</span> in <strong>Mathematical Contest in Modeling (MCM)</strong></span>
+                        </div>
+                        <div class="tl-entry">
+                            <span class="tl-month">02</span>
+                            <span>Teaching Assistant for <strong>Linear Algebra II</strong> (MATH1122 线性代数II)</span>
+                        </div>
+                        <div class="tl-entry">
+                            <span class="tl-month">01</span>
+                            <span><span class="award">Perfect GPA (4.0)</span> in Fall 2021 semester</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
+    <!-- Contact -->
+    <section class="block" id="contact">
         <div class="container">
-            <h2 class="section-title">Contact</h2>
-            <div class="contact-info">
-                <i class="fas fa-envelope"></i>
-                <div class="contact-email">panbk2023 (at) shanghaitech (dot) edu (dot) cn</div>
+            <div class="section-head reveal">
+                <span class="num">03 /</span>
+                <h2>Get in Touch</h2>
+                <span class="rule"></span>
+            </div>
+
+            <div class="contact-card reveal">
+                <h3>Let's talk research</h3>
+                <p>Open to collaboration, discussion, and good questions about Embodied AI, world models, and RL post-training.</p>
+                <a href="mailto:panbk2023@shanghaitech.edu.cn" class="contact-email">
+                    <i class="fas fa-envelope"></i>
+                    panbk2023 <span style="opacity:.6;">(at)</span> shanghaitech <span style="opacity:.6;">(dot)</span> edu <span style="opacity:.6;">(dot)</span> cn
+                </a>
             </div>
         </div>
     </section>
@@ -690,53 +1056,46 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2024 Pan Bikang. All rights reserved.</p>
+            <p>&copy; <span id="year"></span> Pan Bikang · Built with <span class="heart">♥</span> for research</p>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+        // 年份自动更新
+        document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Add scroll effect to navigation
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-            } else {
-                nav.style.boxShadow = '0 1px 2px 0 rgba(0, 0, 0, 0.05)';
-            }
-        });
-
-        // Add fade-in animation to elements when they come into view
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+        // 导航：滚动时阴影
+        const topbar = document.getElementById('topbar');
+        const onScroll = () => {
+            topbar.classList.toggle('scrolled', window.scrollY > 30);
         };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
 
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-up');
+        // 点击导航项后关闭移动菜单
+        const navLinks = document.getElementById('navLinks');
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // 移动端菜单切换
+        const toggle = document.getElementById('navToggle');
+        toggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+
+        // 滚动渐入
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('in');
+                    io.unobserve(e.target);
                 }
             });
-        }, observerOptions);
-
-        // Observe all sections
-        document.querySelectorAll('.section').forEach(section => {
-            observer.observe(section);
-        });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     </script>
 </body>
 </html>
