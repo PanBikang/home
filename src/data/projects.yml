@@ -1,0 +1,21 @@
+# Side / open-source projects.
+#
+# Fields:
+#   name         (required)
+#   href         (required, external link)
+#   description  (required)
+#   repo         (optional, "owner/name" — adds a live ★ count fetched from GitHub)
+
+- name: NLPrompt
+  href: https://github.com/qunovo/NLPrompt
+  repo: qunovo/NLPrompt
+  description: >
+    Official code for "NLPrompt: Noise-Label Prompt Learning for
+    Vision-Language Models" (CVPR 2025 Highlight).
+
+- name: PromptFolio
+  href: https://github.com/PanBikang/PromptFolio
+  repo: PanBikang/PromptFolio
+  description: >
+    Official code for "Federated Learning from Vision-Language Foundation
+    Models" (NeurIPS 2024).

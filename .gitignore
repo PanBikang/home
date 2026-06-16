@@ -1,0 +1,27 @@
+# build output
+# NOTE: docs/ is intentionally committed — GitHub Pages serves the site
+# from the /docs folder of the main branch. Do not re-ignore it.
+dist/
+
+# dependencies
+node_modules/
+
+# generated types
+.astro/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS
+.DS_Store
+
+# editor
+.idea/
+.vscode/

@@ -1,0 +1,43 @@
+---
+// Publication card — venue-badge layout (no teaser image).
+// Adapted from the boyugou template: the 150px image column is replaced
+// by a venue + year badge column so no per-paper image is required.
+interface Props {
+  title: string;
+  authors: string;
+  venue: string;
+  year?: string;
+  pdf?: string;
+  code?: string;
+  page?: string;
+  note?: string;
+  highlights?: string[];
+}
+const { title, authors, venue, year, pdf, code, page, note, highlights } = Astro.props;
+const headline = pdf ?? page ?? code;
+---
+<article class="pub">
+  <div class="pub-badge">
+    <span class="venue">{venue}</span>
+    {year && <span class="year">{year}</span>}
+  </div>
+  <div class="pub-main">
+    <div class="title">
+      {headline ? <a href={headline} target="_blank" rel="noopener">{title}</a> : title}
+    </div>
+    <div class="authors">
+      <span set:html={authors}></span>
+      {note && <span class="pub-note">{note}</span>}
+    </div>
+    {highlights && highlights.length > 0 && (
+      <div class="pub-highlights">
+        {highlights.map((h: string) => <span class="pub-highlight">{h}</span>)}
+      </div>
+    )}
+    <div class="pub-links">
+      {pdf  && <a href={pdf} target="_blank" rel="noopener">PDF</a>}
+      {code && <a href={code} target="_blank" rel="noopener">Code</a>}
+      {page && <a href={page} target="_blank" rel="noopener">Project</a>}
+    </div>
+  </div>
+</article>

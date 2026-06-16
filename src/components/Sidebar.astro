@@ -1,0 +1,26 @@
+---
+import site from '../data/site.yml';
+
+// Apply the deploy base path to static avatar URL so it resolves under a
+// sub-path deploy (e.g. /home/). Astro doesn't auto-prefix raw src strings.
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (p: string) => (p.startsWith('/') ? `${base}${p}` : p);
+const avatar = withBase(site.avatar);
+---
+<aside>
+  <img class="avatar" src={avatar} alt={site.name} />
+  <h1 class="name">
+    {site.name}
+    {site.nameHan && <span class="han">{site.nameHan}</span>}
+  </h1>
+  <p class="role">{site.position}</p>
+  <p class="aff">{site.affiliation}</p>
+  <p class="email">{site.email}</p>
+  <div class="social">
+    {site.social.map((s: any) => (
+      <a href={s.href} aria-label={s.label} rel="noopener" target="_blank">
+        <i class={s.icon}></i>
+      </a>
+    ))}
+  </div>
+</aside>

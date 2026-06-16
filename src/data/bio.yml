@@ -1,0 +1,17 @@
+# Bio paragraphs shown in the "About" section.
+# Each entry is rendered as one <p>. HTML (e.g., <a>, <strong>) is supported.
+paragraphs:
+  - >
+    Hi, I'm Bikang — a computer science Ph.D. student at
+    <a href="https://www.shanghaitech.edu.cn/">ShanghaiTech University</a>,
+    supervised by <a href="https://faculty.sist.shanghaitech.edu.cn/faculty/shiye/">Prof. Ye Shi (石野)</a>.
+  - >
+    My research centers on <strong>Embodied AI</strong> — particularly
+    <strong>world action models</strong> and <strong>reinforcement
+    post-training</strong> for building agents that perceive, plan, and
+    act in complex environments.
+  - >
+    I'm broadly interested in policy learning, vision-language
+    foundation models, and optimization. If any of this resonates, I'd
+    love to hear from you — drop me an email to discuss or explore
+    collaboration.

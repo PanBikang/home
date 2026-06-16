@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var theme = stored === 'light' || stored === 'dark'
+            ? stored
+            : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script><title>Pan Bikang | ShanghaiTech University</title><meta name="description" content="Homepage of Pan Bikang — Ph.D. student at ShanghaiTech University, working on Embodied AI, world action models, and reinforcement post-training."><meta name="keywords" content="Pan Bikang, 潘比康, Embodied AI, world models, reinforcement post-training, ShanghaiTech"><link rel="canonical" href="https://panbikang.github.io/home/"><link rel="icon" type="image/svg+xml" href="/home/assets/img/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="stylesheet" href="/home/_astro/index.DWDBpBNX.css"></head> <body> <div class="theme-toggle" role="group" aria-label="Color theme"> <button type="button" data-set-theme="light" aria-label="Use light theme" title="Light theme"> <i class="fa-solid fa-sun"></i> </button> <button type="button" data-set-theme="dark" aria-label="Use dark theme" title="Dark theme"> <i class="fa-solid fa-moon"></i> </button> </div>  <div class="layout"> <aside> <img class="avatar" src="/home/assets/img/panbk.jpg" alt="Pan Bikang"> <h1 class="name"> Pan Bikang <span class="han">潘比康</span> </h1> <p class="role">Ph.D. Student in Computer Science</p> <p class="aff">ShanghaiTech University</p> <p class="email">panbk2023 [at] shanghaitech [dot] edu [dot] cn</p> <div class="social"> <a href="https://scholar.google.com/citations?user=MQmRikIAAAAJ&hl=zh-CN" aria-label="Google Scholar" rel="noopener" target="_blank"> <i class="ai ai-google-scholar"></i> </a><a href="https://github.com/PanBikang" aria-label="GitHub" rel="noopener" target="_blank"> <i class="fab fa-github"></i> </a><a href="mailto:panbk2023@shanghaitech.edu.cn" aria-label="Email" rel="noopener" target="_blank"> <i class="fas fa-envelope"></i> </a> </div> </aside> <main> <!-- About --> <section id="about" class="bio"> <div class="section-head"> <h2>About</h2> <div class="section-rule"></div> </div> <p>Hi, I'm Bikang — a computer science Ph.D. student at <a href="https://www.shanghaitech.edu.cn/">ShanghaiTech University</a>, supervised by <a href="https://faculty.sist.shanghaitech.edu.cn/faculty/shiye/">Prof. Ye Shi (石野)</a>.
+</p><p>My research centers on <strong>Embodied AI</strong> — particularly <strong>world action models</strong> and <strong>reinforcement post-training</strong> for building agents that perceive, plan, and act in complex environments.
+</p><p>I'm broadly interested in policy learning, vision-language foundation models, and optimization. If any of this resonates, I'd love to hear from you — drop me an email to discuss or explore collaboration.
+</p>  </section> <!-- News --> <section id="news"> <div class="section-head"> <h2>News</h2> <div class="section-rule"></div> </div> <ul class="news"> <li> <span class="date">2026.04</span> <div> <span>Our paper on sample-efficient diffusion-based RL with critic guidance accepted to <strong>ICML 2026</strong>.
+</span> <span class="tag accept">ICML 2026</span> </div> </li><li> <span class="date">2025.08</span> <div> <span>Pivoted research focus to <strong>Embodied AI</strong> — Vision-Language-Action (VLA) models and reinforcement post-training.
+</span>  </div> </li><li> <span class="date">2025.03</span> <div> <span>Our paper <strong>NLPrompt</strong> (noise-label prompt learning for vision-language models) accepted to <strong>CVPR 2025</strong>.
+</span> <span class="tag accept">CVPR 2025</span><span class="tag highlight">Highlight</span> </div> </li><li> <span class="date">2024.09</span> <div> <span>Our paper on federated learning from vision-language foundation models accepted to <strong>NeurIPS 2024</strong>.
+</span> <span class="tag accept">NeurIPS 2024</span> </div> </li><li> <span class="date">2023.06</span> <div> <span>Awarded <strong>"Shanghai Outstanding Graduate"</strong>.
+</span>  </div> </li> </ul> </section> <!-- Publications --> <section id="publications"> <div class="section-head"> <h2>Selected Publications</h2> <div class="section-rule"></div> </div> <div class="pubs"> <article class="pub"> <div class="pub-badge"> <span class="venue">ICML 2026</span> <span class="year">2026</span> </div> <div class="pub-main"> <div class="title"> <a href="https://arxiv.org/abs/2605.30056" target="_blank" rel="noopener">Sample-Efficient Diffusion-based Reinforcement Learning with Critic Guidance</a> </div> <div class="authors"> <span>Shutong Ding, Zejia Zhong, Zhongyi Wang, Ke Hu, <strong>Bikang Pan</strong>, Jingya Wang, Ye Shi
+</span>  </div>  <div class="pub-links"> <a href="https://arxiv.org/abs/2605.30056" target="_blank" rel="noopener">PDF</a> <a href="https://github.com/wadx2019/cgpo" target="_blank" rel="noopener">Code</a> <a href="https://dingsht.tech/cgpo-webpage/" target="_blank" rel="noopener">Project</a> </div> </div> </article><article class="pub"> <div class="pub-badge"> <span class="venue">CVPR 2025</span> <span class="year">2025</span> </div> <div class="pub-main"> <div class="title"> <a href="https://arxiv.org/pdf/2412.01256" target="_blank" rel="noopener">NLPrompt: Noise-Label Prompt Learning for Vision-Language Models</a> </div> <div class="authors"> <span><strong>Bikang Pan</strong>†, Qun Li†, Xiaoying Tang, Wei Huang, Zhen Fang, Feng Liu, Jingya Wang, Jingyi Yu, Ye Shi
+</span>  </div> <div class="pub-highlights"> <span class="pub-highlight">Highlight</span> </div> <div class="pub-links"> <a href="https://arxiv.org/pdf/2412.01256" target="_blank" rel="noopener">PDF</a> <a href="https://github.com/qunovo/NLPrompt" target="_blank" rel="noopener">Code</a> <a href="https://nlprompt.github.io/" target="_blank" rel="noopener">Project</a> </div> </div> </article><article class="pub"> <div class="pub-badge"> <span class="venue">ICCV 2025</span> <span class="year">2025</span> </div> <div class="pub-main"> <div class="title"> <a href="https://arxiv.org/pdf/2503.17096" target="_blank" rel="noopener">Multi-modal Multi-platform Person Re-Identification: Benchmark and Method</a> </div> <div class="authors"> <span>Ruiyang Ha, Songyi Jiang, Bin Li, <strong>Bikang Pan</strong>, Yihang Zhu, Junjie Zhang, Xiatian Zhu, Shaogang Gong, Jingya Wang
+</span>  </div>  <div class="pub-links"> <a href="https://arxiv.org/pdf/2503.17096" target="_blank" rel="noopener">PDF</a>  <a href="https://mp-reid.github.io/" target="_blank" rel="noopener">Project</a> </div> </div> </article><article class="pub"> <div class="pub-badge"> <span class="venue">NeurIPS 2024</span> <span class="year">2024</span> </div> <div class="pub-main"> <div class="title"> <a href="https://arxiv.org/pdf/2409.19610" target="_blank" rel="noopener">Federated Learning from Vision-Language Foundation Models: Theoretical Analysis and Method</a> </div> <div class="authors"> <span><strong>Bikang Pan</strong>, Wei Huang, Ye Shi
+</span>  </div>  <div class="pub-links"> <a href="https://arxiv.org/pdf/2409.19610" target="_blank" rel="noopener">PDF</a> <a href="https://github.com/PanBikang/PromptFolio" target="_blank" rel="noopener">Code</a>  </div> </div> </article><article class="pub"> <div class="pub-badge"> <span class="venue">SGC 2024</span> <span class="year">2024</span> </div> <div class="pub-main"> <div class="title"> <a href="https://arxiv.org/pdf/2409.19962" target="_blank" rel="noopener">Two-Stage Optimization for Efficient V2G Coordination in Distribution Power System</a> </div> <div class="authors"> <span>Pengchao Tian, Siqi Yan, <strong>Bikang Pan</strong>, Ye Shi
+</span>  </div>  <div class="pub-links"> <a href="https://arxiv.org/pdf/2409.19962" target="_blank" rel="noopener">PDF</a>   </div> </div> </article><article class="pub"> <div class="pub-badge"> <span class="venue">AAAI 2023</span> <span class="year">2023</span> </div> <div class="pub-main"> <div class="title"> Certifiable Out-of-Distribution Generalization </div> <div class="authors"> <span>Nanyang Ye, Lin Zhu, Jia Wang, Zhaoyu Zeng, Jiayao Shao, Chensheng Peng, <strong>Bikang Pan</strong>, Kaican Li, Jun Zhu
+</span>  </div>  <div class="pub-links">    </div> </div> </article> </div> </section>  <!-- Academic Services --> <section id="services"> <div class="section-head"> <h2>Honors &amp; Services</h2> <div class="section-rule"></div> </div> <ul class="list"> <li> <span class="label">Honors &amp; Awards</span> <div class="sub">Shanghai Outstanding Graduate (2023) · Outstanding Student Leader (2026) · Outstanding Student (2025) · SIST Excellent Teaching Assistant (2025) · MCM Outstanding Winner (2022) · Perfect GPA 4.0 (Fall 2021)
+</div> </li><li> <span class="label">Conferences &amp; Journals</span> <div class="sub">IJCV · ICCV 2025 · CVPR 2025 · NeurIPS 2024 & 2025 (<strong>Top Reviewer</strong>)
+</div> </li> </ul> </section> <!-- Education --> <section id="education"> <div class="section-head"> <h2>Education</h2> <div class="section-rule"></div> </div> <ul class="list"> <li> <span class="label">ShanghaiTech University</span> <span style="color:var(--text-3);"> · China</span> <div class="sub">Ph.D. in Computer Science and Technology</div> <div class="meta">2023.08 — Present</div> </li><li> <span class="label">ShanghaiTech University</span> <span style="color:var(--text-3);"> · China</span> <div class="sub">B.Eng. in Computer Science and Technology</div> <div class="meta">2019.08 — 2023.06</div> </li> </ul> </section> <!-- Teaching --> <section id="teaching"> <div class="section-head"> <h2>Teaching</h2> <div class="section-rule"></div> </div> <p style="color:var(--text-2);font-size:14px;margin-bottom:20px;">Teaching Assistant at ShanghaiTech University (SIST).</p> <ul class="list"> <li> <span class="label">SI251 Convex Optimization (凸优化)</span>  <div class="meta">Fall 2024 · Fall 2025</div> </li><li> <span class="label">SI152 Numerical Optimization (数值最优化)</span>  <div class="meta">Spring 2023 · Spring 2024 · Spring 2025 · Spring 2026</div> </li><li> <span class="label">EE140 Communication Principles (通信原理)</span>  <div class="meta">Fall 2022</div> </li><li> <span class="label">MATH1122 Linear Algebra II (线性代数II)</span>  <div class="meta">Spring 2022</div> </li> </ul> </section> <footer>panbikang.github.io · updated 2026</footer> </main> </div> <script>
+    (function () {
+      const fmt = (n) =>
+        n >= 1000
+          ? (n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, '') + 'k'
+          : n;
+      document.querySelectorAll('[data-repo]').forEach(async (el) => {
+        const repo = el.dataset.repo;
+        const target = el.querySelector('[data-stars]');
+        if (!target) return;
+        try {
+          const r = await fetch(`https://api.github.com/repos/${repo}`);
+          if (!r.ok) throw new Error(r.status);
+          const d = await r.json();
+          target.textContent = fmt(d.stargazers_count);
+          target.removeAttribute('data-state');
+        } catch {
+          target.remove();
+        }
+      });
+    })();
+
+    (function () {
+      const root = document.documentElement;
+      const buttons = document.querySelectorAll('[data-set-theme]');
+      const sync = () => {
+        const current = root.getAttribute('data-theme');
+        buttons.forEach((b) => {
+          b.setAttribute('aria-pressed', b.dataset.setTheme === current ? 'true' : 'false');
+        });
+      };
+      buttons.forEach((b) => {
+        b.addEventListener('click', () => {
+          const next = b.dataset.setTheme;
+          root.setAttribute('data-theme', next);
+          try { localStorage.setItem('theme', next); } catch {}
+          sync();
+        });
+      });
+      const mq = window.matchMedia('(prefers-color-scheme: dark)');
+      const onSystemChange = (e) => {
+        let stored = null;
+        try { stored = localStorage.getItem('theme'); } catch {}
+        if (stored === 'light' || stored === 'dark') return;
+        root.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        sync();
+      };
+      if (mq.addEventListener) mq.addEventListener('change', onSystemChange);
+      else if (mq.addListener) mq.addListener(onSystemChange);
+      sync();
+    })();
+  </script>  </body></html>

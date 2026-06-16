@@ -1,0 +1,70 @@
+---
+import site from '../data/site.yml';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = site.title, description = site.description } = Astro.props;
+
+// Astro only auto-prefixes assets it processes. Static path strings (avatar,
+// favicon) live in YAML and need the base prefix applied manually so they
+// resolve under a sub-path deploy (e.g. /home/).
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (p: string) => (p.startsWith('/') ? `${base}${p}` : p);
+const favicon = withBase(site.favicon);
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var theme = stored === 'light' || stored === 'dark'
+            ? stored
+            : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script>
+    <title>{title} | {site.affiliation}</title>
+    <meta name="description" content={description} />
+    {site.keywords && <meta name="keywords" content={site.keywords} />}
+    <link rel="canonical" href="https://panbikang.github.io/home/" />
+
+    <link rel="icon" type="image/svg+xml" href={favicon} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="theme-toggle" role="group" aria-label="Color theme">
+      <button type="button" data-set-theme="light" aria-label="Use light theme" title="Light theme">
+        <i class="fa-solid fa-sun"></i>
+      </button>
+      <button type="button" data-set-theme="dark" aria-label="Use dark theme" title="Dark theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </div>
+    <slot />
+  </body>
+</html>

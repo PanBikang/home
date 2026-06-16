@@ -1,0 +1,177 @@
+---
+import Base from '../layouts/Base.astro';
+import Sidebar from '../components/Sidebar.astro';
+import SectionHead from '../components/SectionHead.astro';
+import Publication from '../components/Publication.astro';
+
+import site from '../data/site.yml';
+import bio from '../data/bio.yml';
+import news from '../data/news.yml';
+import publications from '../data/publications.yml';
+import projects from '../data/projects.yml';
+import services from '../data/services.yml';
+import education from '../data/education.yml';
+import teaching from '../data/teaching.yml';
+---
+<Base>
+  <div class="layout">
+    <Sidebar />
+
+    <main>
+      <!-- About -->
+      <section id="about" class="bio">
+        <SectionHead title="About" />
+        {bio.paragraphs.map((para: string) => (
+          <p set:html={para}></p>
+        ))}
+        {site.contact?.enabled && (
+          <div class="callout">{site.contact.message}</div>
+        )}
+      </section>
+
+      <!-- News -->
+      <section id="news">
+        <SectionHead title="News" />
+        <ul class="news">
+          {news.map((item: any) => (
+            <li>
+              <span class="date">{item.date}</span>
+              <div>
+                <span set:html={item.html} />
+                {item.tags?.map((t: any) => (
+                  <span class={`tag ${t.tone ?? ''}`}>{t.label}</span>
+                ))}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- Publications -->
+      <section id="publications">
+        <SectionHead title="Selected Publications" />
+        <div class="pubs">
+          {publications.map((p: any) => <Publication {...p} />)}
+        </div>
+      </section>
+
+      {/* Projects (temporarily hidden — uncomment to restore)
+      <section id="projects">
+        <SectionHead title="Projects" />
+        <div class="projects">
+          {projects.map((p: any) => (
+            <a class="project" href={p.href} data-repo={p.repo} rel="noopener" target="_blank">
+              <div class="pname">
+                {p.name}
+                <span style="color:var(--text-3);">↗</span>
+                {p.repo && <span class="stars" data-stars data-state="loading">—</span>}
+              </div>
+              <div class="pdesc" set:html={p.description}></div>
+            </a>
+          ))}
+        </div>
+      </section>
+      */}
+
+      <!-- Academic Services -->
+      <section id="services">
+        <SectionHead title="Honors & Services" />
+        <ul class="list">
+          {services.map((s: any) => (
+            <li>
+              <span class="label">{s.label}</span>
+              <div class="sub" set:html={s.html}></div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- Education -->
+      <section id="education">
+        <SectionHead title="Education" />
+        <ul class="list">
+          {education.map((e: any) => (
+            <li>
+              <span class="label">{e.institution}</span>
+              {e.country && <span style="color:var(--text-3);"> · {e.country}</span>}
+              <div class="sub">{e.degree}</div>
+              <div class="meta">{e.period}</div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- Teaching -->
+      <section id="teaching">
+        <SectionHead title="Teaching" />
+        {teaching.intro && (
+          <p style="color:var(--text-2);font-size:14px;margin-bottom:20px;">{teaching.intro}</p>
+        )}
+        <ul class="list">
+          {teaching.courses.map((c: any) => (
+            <li>
+              <span class="label">{c.course}</span>
+              {c.html && <div class="sub" set:html={c.html}></div>}
+              <div class="meta">{c.period}</div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <footer>panbikang.github.io · updated {new Date().getFullYear()}</footer>
+    </main>
+  </div>
+
+  <script is:inline>
+    (function () {
+      const fmt = (n) =>
+        n >= 1000
+          ? (n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, '') + 'k'
+          : n;
+      document.querySelectorAll('[data-repo]').forEach(async (el) => {
+        const repo = el.dataset.repo;
+        const target = el.querySelector('[data-stars]');
+        if (!target) return;
+        try {
+          const r = await fetch(`https://api.github.com/repos/${repo}`);
+          if (!r.ok) throw new Error(r.status);
+          const d = await r.json();
+          target.textContent = fmt(d.stargazers_count);
+          target.removeAttribute('data-state');
+        } catch {
+          target.remove();
+        }
+      });
+    })();
+
+    (function () {
+      const root = document.documentElement;
+      const buttons = document.querySelectorAll('[data-set-theme]');
+      const sync = () => {
+        const current = root.getAttribute('data-theme');
+        buttons.forEach((b) => {
+          b.setAttribute('aria-pressed', b.dataset.setTheme === current ? 'true' : 'false');
+        });
+      };
+      buttons.forEach((b) => {
+        b.addEventListener('click', () => {
+          const next = b.dataset.setTheme;
+          root.setAttribute('data-theme', next);
+          try { localStorage.setItem('theme', next); } catch {}
+          sync();
+        });
+      });
+      const mq = window.matchMedia('(prefers-color-scheme: dark)');
+      const onSystemChange = (e) => {
+        let stored = null;
+        try { stored = localStorage.getItem('theme'); } catch {}
+        if (stored === 'light' || stored === 'dark') return;
+        root.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        sync();
+      };
+      if (mq.addEventListener) mq.addEventListener('change', onSystemChange);
+      else if (mq.addListener) mq.addListener(onSystemChange);
+      sync();
+    })();
+  </script>
+</Base>

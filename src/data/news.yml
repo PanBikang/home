@@ -1,0 +1,34 @@
+# News items, newest first.
+# `tags` are small pills shown after the message; `tone` controls color:
+#   accept (blue) | highlight (amber) | oral (red) | (omit for default gray)
+
+- date: 2026.04
+  html: >
+    Our paper on sample-efficient diffusion-based RL with critic guidance
+    accepted to <strong>ICML 2026</strong>.
+  tags:
+    - { label: ICML 2026, tone: accept }
+
+- date: 2025.08
+  html: >
+    Pivoted research focus to <strong>Embodied AI</strong> —
+    Vision-Language-Action (VLA) models and reinforcement post-training.
+
+- date: 2025.03
+  html: >
+    Our paper <strong>NLPrompt</strong> (noise-label prompt learning for
+    vision-language models) accepted to <strong>CVPR 2025</strong>.
+  tags:
+    - { label: CVPR 2025, tone: accept }
+    - { label: Highlight, tone: highlight }
+
+- date: 2024.09
+  html: >
+    Our paper on federated learning from vision-language foundation models
+    accepted to <strong>NeurIPS 2024</strong>.
+  tags:
+    - { label: NeurIPS 2024, tone: accept }
+
+- date: 2023.06
+  html: >
+    Awarded <strong>"Shanghai Outstanding Graduate"</strong>.

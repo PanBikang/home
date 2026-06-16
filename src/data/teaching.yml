@@ -1,0 +1,15 @@
+# Optional intro line above the list (HTML allowed). Set to empty string to hide.
+intro: Teaching Assistant at ShanghaiTech University (SIST).
+
+courses:
+  - course: SI251 Convex Optimization (凸优化)
+    period: Fall 2024 · Fall 2025
+
+  - course: SI152 Numerical Optimization (数值最优化)
+    period: Spring 2023 · Spring 2024 · Spring 2025 · Spring 2026
+
+  - course: EE140 Communication Principles (通信原理)
+    period: Fall 2022
+
+  - course: MATH1122 Linear Algebra II (线性代数II)
+    period: Spring 2022

@@ -1,0 +1,15 @@
+# Each entry is one education record.
+#   institution  (required)
+#   country      (optional)
+#   degree       (required)
+#   period       (required, free-form text shown in mono font)
+
+- institution: ShanghaiTech University
+  country: China
+  degree: Ph.D. in Computer Science and Technology
+  period: 2023.08 — Present
+
+- institution: ShanghaiTech University
+  country: China
+  degree: B.Eng. in Computer Science and Technology
+  period: 2019.08 — 2023.06

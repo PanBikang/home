@@ -1,0 +1,16 @@
+# Each entry is one row in the Services list.
+#   label   (required) — bold heading on the row
+#   html    (required) — body content (HTML allowed)
+
+- label: Honors & Awards
+  html: >
+    Shanghai Outstanding Graduate (2023) ·
+    Outstanding Student Leader (2026) ·
+    Outstanding Student (2025) ·
+    SIST Excellent Teaching Assistant (2025) ·
+    MCM Outstanding Winner (2022) ·
+    Perfect GPA 4.0 (Fall 2021)
+
+- label: Conferences & Journals
+  html: >
+    IJCV · ICCV 2025 · CVPR 2025 · NeurIPS 2024 & 2025 (<strong>Top Reviewer</strong>)

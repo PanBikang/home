@@ -1,0 +1,66 @@
+# Selected publications, newest first.
+#
+# Fields:
+#   title       (required)
+#   authors     (required, HTML allowed — wrap your name in <strong>)
+#   venue       (required, e.g., "ICML 2026")
+#   year        (optional, e.g., 2026 — shown under the venue badge)
+#   pdf         (optional)
+#   code        (optional)
+#   page        (optional, project page)
+#   highlights  (optional list of short metrics rendered as amber chips,
+#                e.g., ["Highlight", "Oral"])
+
+- title: "Sample-Efficient Diffusion-based Reinforcement Learning with Critic Guidance"
+  authors: >
+    Shutong Ding, Zejia Zhong, Zhongyi Wang, Ke Hu,
+    <strong>Bikang Pan</strong>, Jingya Wang, Ye Shi
+  venue: ICML 2026
+  year: 2026
+  pdf: https://arxiv.org/abs/2605.30056
+  code: https://github.com/wadx2019/cgpo
+  page: https://dingsht.tech/cgpo-webpage/
+
+- title: "NLPrompt: Noise-Label Prompt Learning for Vision-Language Models"
+  authors: >
+    <strong>Bikang Pan</strong>†, Qun Li†, Xiaoying Tang, Wei Huang,
+    Zhen Fang, Feng Liu, Jingya Wang, Jingyi Yu, Ye Shi
+  venue: CVPR 2025
+  year: 2025
+  pdf: https://arxiv.org/pdf/2412.01256
+  code: https://github.com/qunovo/NLPrompt
+  page: https://nlprompt.github.io/
+  highlights:
+    - Highlight
+
+- title: "Multi-modal Multi-platform Person Re-Identification: Benchmark and Method"
+  authors: >
+    Ruiyang Ha, Songyi Jiang, Bin Li,
+    <strong>Bikang Pan</strong>, Yihang Zhu, Junjie Zhang, Xiatian Zhu,
+    Shaogang Gong, Jingya Wang
+  venue: ICCV 2025
+  year: 2025
+  pdf: https://arxiv.org/pdf/2503.17096
+  page: https://mp-reid.github.io/
+
+- title: "Federated Learning from Vision-Language Foundation Models: Theoretical Analysis and Method"
+  authors: >
+    <strong>Bikang Pan</strong>, Wei Huang, Ye Shi
+  venue: NeurIPS 2024
+  year: 2024
+  pdf: https://arxiv.org/pdf/2409.19610
+  code: https://github.com/PanBikang/PromptFolio
+
+- title: "Two-Stage Optimization for Efficient V2G Coordination in Distribution Power System"
+  authors: >
+    Pengchao Tian, Siqi Yan, <strong>Bikang Pan</strong>, Ye Shi
+  venue: SGC 2024
+  year: 2024
+  pdf: https://arxiv.org/pdf/2409.19962
+
+- title: "Certifiable Out-of-Distribution Generalization"
+  authors: >
+    Nanyang Ye, Lin Zhu, Jia Wang, Zhaoyu Zeng, Jiayao Shao,
+    Chensheng Peng, <strong>Bikang Pan</strong>, Kaican Li, Jun Zhu
+  venue: AAAI 2023
+  year: 2023
